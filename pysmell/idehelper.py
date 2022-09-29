@@ -25,7 +25,7 @@ def findBase(line, col):
             index += 1
             break
     return index #this is zero based :S
-    
+
 
 def updatePySmellDict(master, partial):
     for key, value in partial.items():
@@ -42,7 +42,7 @@ def tryReadPYSMELLDICT(directory, filename, dictToUpdate):
             updatePySmellDict(dictToUpdate, eval(tagsFile.read()))
         finally:
             tagsFile.close()
-    
+
 
 def findPYSMELLDICT(filename):
     pathParts = _getPathParts(filename)[:-1]
@@ -59,7 +59,7 @@ def findPYSMELLDICT(filename):
     else:
         return None
     return PYSMELLDICT
-            
+
 
 def _getPathParts(path):
     "given a full path, return its components without the extension"
@@ -98,7 +98,7 @@ def inferModule(chain, AST, lineNo):
     if valid:
         return '.'.join(fullModuleParts)
     return None
-    
+
 
 funcCellRE = re.compile(r'(.+)\(.*\)')
 def inferInstance(fullPath, AST, lineNo, var, PYSMELLDICT):
@@ -156,7 +156,7 @@ def inferClass(fullPath, AST, origLineNo, PYSMELLDICT, vim=None):
         else:
             packagesStr = ""
         fullKlass = "%s%s.%s" % (packagesStr, filename[:-3], klass)
-        
+
     return fullKlass, parents
 
 
@@ -187,7 +187,7 @@ class CompletionOptions:
 
     def __getattr__(self, item):
         return self.extra[item]
-        
+
     def __eq__(self, other):
         return (isinstance(other, CompletionOptions)
                 and self.compType == other.compType and self.extra == other.extra)
@@ -197,12 +197,12 @@ class CompletionOptions:
 
     def __repr__(self):
         return repr(self.compType) + 'with extra: ' + repr(self.extra)
-        
+
 
 def detectCompletionType(fullPath, origSource, lineNo, origCol, base, PYSMELLDICT, update=True):
     """
     Return a CompletionOptions instance describing the type of the completion, along with extra parameters.
-    
+
     args: fullPath -> The full path and filename of the file that is edited
           origSource -> The source of the edited file (it's probably not saved)
           lineNo -> The line number the cursor is in, 1-based
@@ -264,7 +264,7 @@ def detectCompletionType(fullPath, origSource, lineNo, origCol, base, PYSMELLDIC
                 return CompletionOptions(Types.MODULE, module=possibleModule, showMembers=True)
         klass, parents = inferInstance(fullPath, AST, lineNo, var, PYSMELLDICT)
         return CompletionOptions(Types.INSTANCE, klass=klass, parents=parents)
-        
+
 
     return CompletionOptions(Types.TOPLEVEL)
 
@@ -286,7 +286,7 @@ def findCompletions(base, PYSMELLDICT, options, matcher=None):
         doesMatch = lambda word: word == options.name
     elif compType is Types.TOPLEVEL:
         completions = _createTopLevelCompletionList(PYSMELLDICT)
-        
+
     if base:
         filteredCompletions = [comp for comp in completions if doesMatch(comp['word'])]
     else:
@@ -345,8 +345,8 @@ def _createModuleCompletions(PYSMELLDICT, module, completeModuleMembers):
                     completions.extend(_createModuleCompletions(PYSMELLDICT, otherModule, True))
                 else:
                     splitModules.add(basename)
-                
-                
+
+
     completions.extend(dict(word=name, kind="t", dup="1") for name in splitModules)
     return completions
 
@@ -369,7 +369,7 @@ def getCompletionsForClass(klass, parents, PYSMELLDICT):
                 if ancDict is None: continue
                 addCompletionsForClass(anc, ancDict, completions)
             return completions
-            
+
         _findAllParents(klass, PYSMELLDICT['CLASSES'], ancestorList)
         addCompletionsForClass(klass, klassDict, completions)
         for anc in ancestorList:

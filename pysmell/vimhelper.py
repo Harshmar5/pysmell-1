@@ -18,4 +18,4 @@ def findWord(vim, origCol, origLine):
     cword = origLine[index:origCol]
     return cword
 
-    
+
