@@ -20,7 +20,7 @@ matching mode matcher"""
     if not PYSMELLDICT:
         return
     origLine = origSource.splitlines()[lineNo - 1]
-    base = split("[,.\-+/|\[\]]", origLine[:origCol].strip())[-1]
+    base = split(r"[,.\-+/|\[\]]", origLine[:origCol].strip())[-1]
     options = idehelper.detectCompletionType(fullPath, origSource, lineNo, origCol, base, PYSMELLDICT)
     completions = [completion['word'] for completion in idehelper.findCompletions(base, PYSMELLDICT, options, matcher)]
     completions = list(_uniquify(completions))
