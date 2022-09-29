@@ -32,13 +32,13 @@ def all_are_instance(it, typ):
 
 def menu(options):
     """ Accepts a list and causes TextMate to show an inline menu.
-    
+
     If options is a list of strings, will return the selected index.
-    
-    If options is a list of (key, value) tuples, will display "key" and 
+
+    If options is a list of (key, value) tuples, will display "key" and
     return "value". Note that we don't use dicts, so that key-value options
     can be ordered. If you want to use a dict, try dict.items().
-    
+
     In either input case, a list item with value `None` causes tm_dialog to
     display a separator for that index.
     """

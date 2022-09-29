@@ -6,8 +6,8 @@ from NestedPackage.EvenMore import ModuleC as RelMC
 
 class SneakyClass:
     pass
-    
+
 def SneakyFunction():
     pass
-    
+
 SneakyConstant = 42
