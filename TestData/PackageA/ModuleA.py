@@ -1,12 +1,12 @@
 def TopLevelFunction(arg1, arg2):
-    class InnerClassB(object):
+    class InnerClassB:
         def anotherMethod(self, c):
             pass
     return 'something'
 
 CONSTANT = 123
 
-class ClassA(object):
+class ClassA:
     classPropertyA = 4
     classPropertyB = 5
 
@@ -21,7 +21,7 @@ class ClassA(object):
 
     def methodA(self, argA, argB, *args, **kwargs):
         self.propertyD = 4
-        class InnerClass(object):
+        class InnerClass:
             def innerClassMethod(self):
                 self.aHiddenProperty = 'dont bother with inner classes'
                 pass
@@ -30,7 +30,7 @@ class ClassA(object):
         return 'A'
 
 
-class ChildClassA(ClassA, object):
+class ChildClassA(ClassA):
     'a class docstring, imagine that'
     def __init__(self, conArg):
         self.extraProperty = 45
