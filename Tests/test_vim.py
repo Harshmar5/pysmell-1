@@ -9,9 +9,9 @@ from pysmell.vimhelper import findWord
 vim_test = os.path.join("Tests", "test_vim.vim")
 
 
-class MockVim(object):
-    class _current(object):
-        class _window(object):
+class MockVim:
+    class _current:
+        class _window:
             cursor = (-1, -1)
         buffer = []
         window = _window()

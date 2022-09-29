@@ -172,7 +172,7 @@ def getChain(line):
     return ''.join(reversed(chain))
 
 
-class Types(object):
+class Types:
     TOPLEVEL = 'TOPLEVEL'
     FUNCTION = 'FUNCTION'
     METHOD = 'METHOD'
@@ -180,7 +180,7 @@ class Types(object):
     INSTANCE = 'INSTANCE'
 
 
-class CompletionOptions(object):
+class CompletionOptions:
     def __init__(self, compType, **kwargs):
         self.compType = compType
         self.extra = kwargs

@@ -6,7 +6,7 @@ from pysmell import idehelper
 from pysmell.codefinder import ModuleDict
 from pysmell import tags
 
-class ProducesFile(object):
+class ProducesFile:
     def __init__(self, *files):
         self.files = files
     def __call__(self, func):

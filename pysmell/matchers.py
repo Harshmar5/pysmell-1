@@ -79,7 +79,7 @@ def matchFuzzyCI(base):
     return lambda comp: bool(regex.match(comp))
 
 
-class MatchDict(object):
+class MatchDict:
     _MATCHERS = {
         'case-sensitive': matchCaseSensitively,
         'case-insensitive': matchCaseInsensitively,
